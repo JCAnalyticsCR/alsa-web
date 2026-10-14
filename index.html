@@ -305,20 +305,23 @@ textarea.field{min-height:110px;resize:vertical;line-height:1.5}
 .form__nota{font-size:13px;color:var(--gris);text-align:center}
 
 /* Footer */
-.footer{position:relative;overflow:hidden;padding:clamp(56px,6vw,80px) var(--pad-x) 28px;border-top:1px solid var(--linea)}
-.footer__top{display:grid;grid-template-columns:1.4fr 1fr 1fr auto;gap:32px 48px;align-items:start}
-.footer__k{font:italic 400 15px/1 var(--serif);color:var(--vino);margin-bottom:14px;display:block}
-.footer__nav{display:flex;flex-direction:column;gap:10px;font-size:15px}
+.footer{position:relative;overflow:hidden;padding:clamp(30px,3.2vw,42px) var(--pad-x) 20px;border-top:1px solid var(--linea)}
+.footer__top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 40px}
+.footer__brand{display:flex;flex-direction:column;gap:4px}
+.footer__brand .logo__name{font-size:22px}
+.footer__brand .logo__lema{font-size:13.5px}
+.footer__nav{display:flex;flex-wrap:wrap;gap:8px 26px;font-size:15px}
 .footer__nav a,.footer__c a{color:var(--tinta);text-decoration:none}
 .footer__nav a:hover,.footer__c a:hover{color:var(--vino)}
-.footer__c{display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.5;color:var(--texto2)}
-.totop{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border:1px solid var(--linea);border-radius:50%;color:var(--vino);text-decoration:none;transition:background var(--dur-drawer),color var(--dur-drawer),transform var(--dur-drawer) var(--ease-out)}
+.footer__c{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--gris)}
+.footer__c a{color:var(--gris)}
+.totop{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid var(--linea);border-radius:50%;color:var(--vino);text-decoration:none;transition:background var(--dur-drawer),color var(--dur-drawer),transform var(--dur-drawer) var(--ease-out)}
 .totop:hover{background:var(--vino);color:#fff;transform:translateY(-4px)}
-.footer__bottom{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px 32px;padding-right:84px;font-size:13px;color:var(--gris);border-top:1px solid var(--linea);padding-top:22px;margin-top:clamp(40px,5vw,64px)}
+.footer__bottom{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 32px;padding-right:84px;border-top:1px solid var(--linea);padding-top:16px;margin-top:22px}
 
 .jc{display:inline-flex;align-items:center;gap:14px}
 .jc__logo{display:inline-flex;align-items:center;background:#0C0F14;padding:5px 16px 5px 8px;border-radius:999px;box-shadow:0 10px 24px -14px rgba(12,15,20,.8);transition:transform var(--dur-drawer) var(--ease-out),box-shadow var(--dur-drawer)}
-.jc__logo img{height:42px;width:auto}
+.jc__logo img{height:34px;width:auto}
 .jc:hover .jc__logo{transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(12,15,20,.9),0 0 0 1px rgba(46,204,113,.35)}
 
 /* WhatsApp flotante */
@@ -362,7 +365,6 @@ textarea.field{min-height:110px;resize:vertical;line-height:1.5}
   .nosotros{grid-template-columns:1fr}
   .d2d__grid{grid-template-columns:1fr}
   .d2d__l{position:static}
-  .footer__top{grid-template-columns:1fr 1fr}
 }
 @media (max-width:720px){
   .box{width:180px;height:106px;padding:16px 18px}
@@ -383,7 +385,9 @@ textarea.field{min-height:110px;resize:vertical;line-height:1.5}
   .paso::before{left:-36px}
   .dato{flex-direction:column;gap:2px}
   .footer__bottom{padding-right:0;padding-bottom:64px}
-  .footer__top{grid-template-columns:1fr}
+  .footer__top{align-items:flex-start}
+  .totop{position:absolute;right:var(--pad-x);top:30px}
+  .footer__nav{gap:8px 20px}
   .wa-float{right:16px;bottom:16px;width:54px;height:54px}
   .rv .w__i{transition-delay:calc(var(--i,0) * 30ms)}
 }
@@ -662,12 +666,11 @@ textarea.field{min-height:110px;resize:vertical;line-height:1.5}
 
 <footer class="footer">
   <div class="footer__top wrap">
-    <div><span class="logo__name">Grupo Aduanal Alsa, S.A.</span><p class="footer__c" style="margin-top:12px;max-width:340px">Agencia aduanal y operador de logística internacional de carga. Su carga en manos de profesionales desde 1984.</p></div>
-    <nav class="footer__nav" aria-label="Pie de página"><span class="footer__k">Navegar</span><a href="#nosotros">Quiénes somos</a><a href="#servicios">Servicios</a><a href="#clientes">Clientes</a><a href="#alianzas">Alianzas</a><a href="#contacto">Contacto</a></nav>
-    <div class="footer__c"><span class="footer__k">Oficina</span><span>Avenida 14, calles 11 y 13<br>San José, Costa Rica</span><a href="tel:+50622331266">(506) 2233-1266</a><span>Lun a Vie · 8:00 a 17:00</span></div>
-    <a class="totop" href="#top" aria-label="Volver arriba"><svg width="20" height="20" style="transform:rotate(-90deg)" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    <div class="footer__brand"><span class="logo__name">Grupo Aduanal Alsa, S.A.</span><span class="logo__lema">Su carga en manos de profesionales desde 1984</span></div>
+    <nav class="footer__nav" aria-label="Pie de página"><a href="#nosotros">Quiénes somos</a><a href="#servicios">Servicios</a><a href="#clientes">Clientes</a><a href="#alianzas">Alianzas</a><a href="#contacto">Contacto</a></nav>
+    <a class="totop" href="#top" aria-label="Volver arriba"><svg width="18" height="18" style="transform:rotate(-90deg)" aria-hidden="true"><use href="#i-arrow"/></svg></a>
   </div>
-  <div class="footer__bottom wrap"><span>© 2026 Grupo Aduanal Alsa, S.A. · Todos los derechos reservados.</span><span class="jc"><span class="jc__logo"><picture><source srcset="assets/marca/jc-analytics.webp" type="image/webp"><img src="assets/marca/jc-analytics.png" alt="JC Analytics" width="244" height="71" loading="lazy" decoding="async"></picture></span></span></div>
+  <div class="footer__bottom wrap"><div class="footer__c"><span>© 2026 Grupo Aduanal Alsa, S.A.</span><span>Avenida 14, calles 11 y 13, San José</span><a href="tel:+50622331266">(506) 2233-1266</a><span>Lun a Vie · 8:00 a 17:00</span></div><span class="jc"><span class="jc__logo"><picture><source srcset="assets/marca/jc-analytics.webp" type="image/webp"><img src="assets/marca/jc-analytics.png" alt="JC Analytics" width="244" height="71" loading="lazy" decoding="async"></picture></span></span></div>
 </footer>
 
 <a class="wa-float" id="wa-float" href="https://wa.me/50622331266" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp" title="WhatsApp"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#wa-path"/></svg></a>
