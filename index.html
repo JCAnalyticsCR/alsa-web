@@ -133,11 +133,6 @@ h1,h2,h3,p{margin:0}
 .nosotros__head .h2{font-size:clamp(34px,3.4vw,50px);line-height:1.04}
 .nosotros__body{display:flex;flex-direction:column;gap:22px;font-size:18px;line-height:1.65;color:var(--texto2)}
 .nosotros__body p:first-child::first-letter{float:left;font:400 4.1em/.8 var(--serif);color:var(--vino);padding:.06em .1em 0 0}
-.cifras{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:1px;background:var(--linea);border:1px solid var(--linea);margin-top:14px}
-.cifra{background:var(--crema) var(--grano);padding:24px 20px;transition:background-color var(--dur-micro)}
-.cifra:hover{background-color:var(--papel)}
-.cifra__n{font:400 46px/1 var(--serif);color:var(--vino);font-variant-numeric:lining-nums tabular-nums}
-.cifra__t{font-size:14px;color:var(--texto2);margin-top:10px;line-height:1.4}
 
 /* Servicios */
 .servicios{background:var(--blanco);padding:var(--pad-y) var(--pad-x)}
@@ -231,32 +226,52 @@ h1,h2,h3,p{margin:0}
 .punto__l{font-size:14px;color:var(--texto-osc)}
 .punto__geo{font:500 11px/1 var(--sans);letter-spacing:.12em;color:#A69C8D;margin-top:10px;padding-top:14px;border-top:1px solid rgba(243,240,230,.12);font-variant-numeric:tabular-nums}
 
-/* Clientes */
-.clientes{background:var(--blanco);padding:var(--pad-y) var(--pad-x)}
+/* Bandas en movimiento: clientes y navieras */
+.clientes{background:var(--blanco);padding:var(--pad-y) 0}
+.clientes .wrap,.alianzas>.wrap{padding:0 var(--pad-x)}
 .clientes .sec-head{align-items:flex-end}
-.clientes .h2,.alianzas .h2{font-size:clamp(34px,3.4vw,48px);line-height:1.06}
-.clientes__sect{font:italic 400 18px/1.45 var(--serif);color:var(--gris);max-width:420px}
-.logos{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
-.logo-c{background:var(--crema);height:110px;display:flex;align-items:center;justify-content:center;padding:16px;transition:background var(--dur-micro)}
-.logo-c img{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;transition:filter var(--dur-drawer),opacity var(--dur-drawer),transform var(--dur-drawer) var(--ease-out)}
+.clientes .h2,.alianzas .h2{font-size:clamp(34px,3.6vw,52px);line-height:1.04}
+.clientes__sect{font:italic 400 19px/1.45 var(--serif);color:var(--gris);max-width:400px}
+.marquee{position:relative;display:flex;flex-direction:column;gap:16px;overflow:hidden;padding:8px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee__row{display:flex;width:max-content;animation:marquee var(--dur,60s) linear infinite}
+.marquee__row--back{animation-direction:reverse}
+.marquee__row:hover{animation-play-state:paused}
+.marquee__group{display:flex;gap:16px;padding:0 16px 0 0;margin:0;list-style:none}
+@keyframes marquee{to{transform:translateX(-50%)}}
+/* Cada logo viaja en un contenedor: cantoneras y acanalado */
+.box{--c:rgba(155,43,43,.6);--r:rgba(43,38,34,.075);--k:7px;--h:11px;--fondo:var(--crema);position:relative;flex:none;width:232px;height:132px;display:flex;align-items:center;justify-content:center;padding:20px 22px;border:1px solid var(--linea);
+  background:
+    linear-gradient(var(--c),var(--c)) 0 0/var(--k) var(--k) no-repeat,linear-gradient(var(--c),var(--c)) 100% 0/var(--k) var(--k) no-repeat,
+    linear-gradient(var(--c),var(--c)) 0 100%/var(--k) var(--k) no-repeat,linear-gradient(var(--c),var(--c)) 100% 100%/var(--k) var(--k) no-repeat,
+    repeating-linear-gradient(90deg,var(--r) 0 1px,transparent 1px 9px) 0 0/100% var(--h) no-repeat,
+    repeating-linear-gradient(90deg,var(--r) 0 1px,transparent 1px 9px) 0 100%/100% var(--h) no-repeat,
+    var(--fondo);
+  transition:transform var(--dur-drawer) var(--ease-out),border-color var(--dur-drawer)}
+.box:hover{transform:translateY(-5px);border-color:rgba(155,43,43,.45)}
+.box img{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;transition:filter var(--dur-drawer),opacity var(--dur-drawer),transform var(--dur-drawer) var(--ease-out)}
+.box--mar{--k:6px;--h:9px;--fondo:#fff;width:204px;height:108px;padding:16px 20px}
 @media (hover:hover){
-  .logo-c img,.aliado img{filter:grayscale(1);opacity:.72}
-  .logo-c:hover{background:var(--crema-hover)}
-  .logo-c:hover img,.aliado:hover img{filter:none;opacity:1;transform:scale(1.05)}
+  .box img{filter:grayscale(1);opacity:.85}
+  .box:hover img{filter:none;opacity:1;transform:scale(1.05)}
 }
 
-/* Alianzas + Enlaces */
-.alianzas{padding:var(--pad-y) var(--pad-x)}
-.alianzas__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(48px,6vw,96px)}
-.col{display:flex;flex-direction:column;gap:24px}
-.aliados{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:12px}
-.aliado{background:#fff;border:1px solid var(--linea);height:78px;display:flex;align-items:center;justify-content:center;padding:12px;transition:border-color var(--dur-micro)}
-.aliado:hover{border-color:var(--vino)}
-.aliado img{max-width:100%;max-height:100%;object-fit:contain;transition:filter var(--dur-drawer),opacity var(--dur-drawer),transform var(--dur-drawer) var(--ease-out)}
-.enlaces{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:0 32px;font-size:15px}
-.enlace{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--linea);color:var(--tinta);text-decoration:none;transition:color var(--dur-micro),padding var(--dur-drawer) var(--ease-out)}
-.enlace:hover{color:var(--vino);padding-left:6px}
-.enlace img{width:44px;height:36px;object-fit:contain;flex:none}
+/* Alianzas: banda con estela de agua */
+.alianzas{padding:var(--pad-y) 0}
+.marquee--mar{padding-bottom:0}
+.estela{height:16px;overflow:hidden;opacity:.55;margin-top:2px}
+.estela::before{content:"";display:block;width:calc(100% + 48px);height:100%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='16'%3E%3Cpath d='M0 8q12-7 24 0t24 0' fill='none' stroke='%239B2B2B' stroke-width='1.2'/%3E%3C/svg%3E") repeat-x 0 50%/48px 16px;animation:estela 2.4s linear infinite}
+.estela--2{opacity:.25;margin-top:-6px}
+.estela--2::before{animation-duration:3.6s;animation-direction:reverse}
+@keyframes estela{to{transform:translateX(-48px)}}
+
+/* Enlaces: tarjetas */
+.enlaces-wrap{margin-top:var(--pad-y)}
+.enlaces{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));gap:12px}
+.enlace{position:relative;display:flex;align-items:center;gap:16px;padding:18px 20px;background:#fff;border:1px solid var(--linea);color:var(--tinta);text-decoration:none;font-size:15px;line-height:1.3;overflow:hidden;transition:border-color var(--dur-drawer),color var(--dur-micro)}
+.enlace::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--vino);transform:scaleY(0);transform-origin:bottom;transition:transform var(--dur-drawer) var(--ease-out)}
+.enlace:hover{border-color:rgba(155,43,43,.45);color:var(--vino)}
+.enlace:hover::before{transform:scaleY(1)}
+.enlace img{width:48px;height:40px;object-fit:contain;flex:none}
 .enlace span{flex:1}
 .enlace::after{content:"↗";color:var(--vino);transition:transform var(--dur-drawer) var(--ease-out)}
 .enlace:hover::after{transform:translate(3px,-3px)}
@@ -345,8 +360,10 @@ textarea.field{min-height:110px;resize:vertical;line-height:1.5}
   .footer__top{grid-template-columns:1fr 1fr}
 }
 @media (max-width:720px){
-  .logos{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
-  .logo-c{height:92px}
+  .box{width:180px;height:106px;padding:16px 18px}
+  .box--mar{width:160px;height:90px;padding:14px 16px}
+  .marquee{gap:12px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+  .marquee__group{gap:12px;padding-right:12px}
   .contacto__seal{right:-220px;bottom:-200px}
 }
 @media (max-width:560px){
@@ -369,6 +386,10 @@ textarea.field{min-height:110px;resize:vertical;line-height:1.5}
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv .w__i,.rv .reveal,.rv .hero__fade,.srv__pane .up,.draw .stamp,.draw .soft,.draw .fx{opacity:1;transform:none}
   .draw .ln{stroke-dashoffset:0}
+  .marquee{-webkit-mask-image:none;mask-image:none;padding:8px var(--pad-x)}
+  .marquee__row{width:auto}
+  .marquee__group{flex-wrap:wrap;justify-content:center;padding:0;width:100%}
+  .marquee__group[aria-hidden],.marquee .dup,.estela{display:none}
   .draw .stamp{transform:rotate(-8deg)}
 }
 </style>
@@ -429,12 +450,6 @@ textarea.field{min-height:110px;resize:vertical;line-height:1.5}
   <div class="nosotros__body reveal">
     <p>Grupo Aduanal Alsa surge como expansión de Aduanera Latina S.A., que opera desde 1984 con servicios de importación y exportación, y asesoría en clasificación arancelaria, valoración, reclamos, exoneraciones, permisos de importación y soluciones dentro del Régimen Tributario Aduanero.</p>
     <p>Con la globalización incorporamos los Servicios de Transporte Internacional de Carga, para que aduana y logística funcionen como una sola entidad. Nuestro personal calificado gestiona los trámites, asesora, coordina la logística y da seguimiento a la mercancía hasta consignatarios y embarcadores.</p>
-    <div class="cifras">
-      <div class="cifra"><div class="cifra__n" data-count="1984" data-from="1900">1984</div><div class="cifra__t">Nace Aduanera Latina S.A.</div></div>
-      <div class="cifra"><div class="cifra__n" data-count="40" data-from="0" data-prefix="+">+40</div><div class="cifra__t">años de operación continua</div></div>
-      <div class="cifra"><div class="cifra__n">1</div><div class="cifra__t">punto de administración y facturación</div></div>
-      <div class="cifra"><div class="cifra__n">DGA</div><div class="cifra__t">responsabilidad directa ante Aduanas</div></div>
-    </div>
   </div>
 </section>
 
@@ -518,7 +533,7 @@ textarea.field{min-height:110px;resize:vertical;line-height:1.5}
   <div class="d2d__grid wrap">
     <div class="d2d__l reveal">
       <span class="eyebrow">Door to Door</span>
-      <h2 class="h2" data-split>Siete pasos, <em>un solo</em> responsable.</h2>
+      <h2 class="h2" data-split>De origen a destino, <em>un solo</em> responsable.</h2>
       <p class="lead">Cada etapa queda registrada y usted recibe el estado de su carga sin tener que preguntar.</p>
       <div class="photo"><picture><source srcset="assets/fotos/proceso-equipo.webp" type="image/webp"><img src="assets/fotos/proceso-equipo.jpg" alt="Equipo coordinando una operación logística" width="1280" height="832" loading="lazy" decoding="async"></picture></div>
     </div>
@@ -549,59 +564,61 @@ textarea.field{min-height:110px;resize:vertical;line-height:1.5}
 
 <section id="clientes" class="clientes">
   <div class="wrap">
-    <div class="sec-head reveal"><div class="sec-head__l"><span class="eyebrow">Clientes</span><h2 class="h2" data-split>Empresas que <em>confían</em> en nosotros</h2></div><span class="clientes__sect">Salud, industria, bebidas, agro, tecnología, librería, muebles, químicos y energía</span></div>
-    <div class="logos reveal">
-      <div class="logo-c"><img src="assets/clientes/henkel.png" alt="Henkel" loading="lazy"></div>
-      <div class="logo-c"><img src="assets/clientes/total.png" alt="Total" loading="lazy"></div>
-      <div class="logo-c"><img src="assets/clientes/mediimplantes.png" alt="Mediimplantes" loading="lazy"></div>
-      <div class="logo-c"><img src="assets/clientes/lehmann.png" alt="Librería Lehmann" loading="lazy"></div>
-      <div class="logo-c"><img src="assets/clientes/casa-del-tanque.png" alt="La Casa del Tanque" loading="lazy"></div>
-      <div class="logo-c"><img src="assets/clientes/eurofertil.png" alt="Eurofertil" loading="lazy"></div>
-      <div class="logo-c"><img src="assets/clientes/gtm.png" alt="Grupo Transmerquim" loading="lazy"></div>
-      <div class="logo-c"><img src="assets/clientes/alvarado.png" alt="Muebles Metálicos Alvarado" loading="lazy"></div>
-      <div class="logo-c"><img src="assets/clientes/equilsa.png" alt="Equilsa" loading="lazy"></div>
-      <div class="logo-c"><img src="assets/clientes/lil.png" alt="Litografía LIL" loading="lazy"></div>
-      <div class="logo-c"><img src="assets/clientes/usb.png" alt="USB Software &amp; Hardware" loading="lazy"></div>
-      <div class="logo-c"><img src="assets/clientes/eucor.png" alt="Eucor Equipamientos" loading="lazy"></div>
-      <div class="logo-c"><img src="assets/clientes/neapolis.png" alt="Neapolis Maquinaria Industrial" loading="lazy"></div>
-      <div class="logo-c"><img src="assets/clientes/mizar.png" alt="Grupo Mizar" loading="lazy" style="mix-blend-mode:normal"></div>
-    </div>
+    <div class="sec-head reveal"><div class="sec-head__l"><span class="eyebrow">Clientes</span><h2 class="h2" data-split>Empresas que <em>confían</em> en nosotros</h2></div><p class="clientes__sect">Atendemos a todos los sectores de la industria costarricense, cada carga con el mismo cuidado.</p></div>
+  </div>
+  <div class="marquee reveal" role="region" aria-label="Clientes">
+    <div class="marquee__row" style="--dur:62s"><ul class="marquee__group">
+      <li class="box"><img src="assets/clientes/henkel.png" alt="Henkel" loading="lazy"></li>
+      <li class="box"><img src="assets/clientes/total.png" alt="Total" loading="lazy"></li>
+      <li class="box"><img src="assets/clientes/mediimplantes.png" alt="Mediimplantes" loading="lazy"></li>
+      <li class="box"><img src="assets/clientes/lehmann.png" alt="Librería Lehmann" loading="lazy"></li>
+      <li class="box"><img src="assets/clientes/casa-del-tanque.png" alt="La Casa del Tanque" loading="lazy"></li>
+      <li class="box"><img src="assets/clientes/eurofertil.png" alt="Eurofertil" loading="lazy"></li>
+      <li class="box"><img src="assets/clientes/gtm.png" alt="Grupo Transmerquim" loading="lazy"></li>
+    </ul></div>
+    <div class="marquee__row marquee__row--back" style="--dur:70s"><ul class="marquee__group">
+      <li class="box"><img src="assets/clientes/alvarado.png" alt="Muebles Metálicos Alvarado" loading="lazy"></li>
+      <li class="box"><img src="assets/clientes/equilsa.png" alt="Equilsa" loading="lazy"></li>
+      <li class="box"><img src="assets/clientes/lil.png" alt="Litografía LIL" loading="lazy"></li>
+      <li class="box"><img src="assets/clientes/usb.png" alt="USB Software &amp; Hardware" loading="lazy"></li>
+      <li class="box"><img src="assets/clientes/eucor.png" alt="Eucor Equipamientos" loading="lazy"></li>
+      <li class="box"><img src="assets/clientes/neapolis.png" alt="Neapolis Maquinaria Industrial" loading="lazy"></li>
+      <li class="box"><img src="assets/clientes/mizar.png" alt="Grupo Mizar" loading="lazy" style="mix-blend-mode:normal"></li>
+    </ul></div>
   </div>
 </section>
 
 <section id="alianzas" class="alianzas">
-  <div class="alianzas__grid wrap">
-    <div class="col reveal">
-      <span class="eyebrow">Alianzas</span>
-      <h2 class="h2" data-split>Red de navieras y operadores <em>logísticos</em></h2>
-      <p class="lead">Negociamos y reservamos directamente con las líneas marítimas para que su flete llegue a Caldera, Moín o el Aeropuerto Juan Santamaría.</p>
-      <div class="aliados">
-        <div class="aliado"><img src="assets/aliados/maersk.png" alt="Maersk" loading="lazy"></div>
-        <div class="aliado"><img src="assets/aliados/evergreen.png" alt="Evergreen" loading="lazy"></div>
-        <div class="aliado"><img src="assets/aliados/cma-cgm.png" alt="CMA CGM" loading="lazy"></div>
-        <div class="aliado"><img src="assets/aliados/nyk.png" alt="NYK" loading="lazy"></div>
-        <div class="aliado"><img src="assets/aliados/apl.png" alt="APL" loading="lazy"></div>
-        <div class="aliado"><img src="assets/aliados/csav.png" alt="CSAV" loading="lazy"></div>
-        <div class="aliado"><img src="assets/aliados/hutchison.png" alt="Hutchison Logistics" loading="lazy"></div>
-        <div class="aliado"><img src="assets/aliados/tcc.png" alt="TCC Shipping Worldwide" loading="lazy"></div>
-        <div class="aliado"><img src="assets/aliados/cargo-compass.png" alt="Cargo Compass" loading="lazy"></div>
-        <div class="aliado"><img src="assets/aliados/king-ocean.png" alt="King Ocean" loading="lazy"></div>
-      </div>
-    </div>
-    <div id="enlaces" class="col reveal">
-      <span class="eyebrow">Enlaces para importadores</span>
-      <h2 class="h2" data-split>Instituciones con las que <em>tramitamos</em></h2>
-      <div class="enlaces">
-        <a class="enlace" href="https://www.hacienda.go.cr" target="_blank" rel="noopener"><img src="assets/instituciones/tica.png" alt="" loading="lazy"><span>Consultas TICA</span></a>
-        <a class="enlace" href="https://www.sfe.go.cr" target="_blank" rel="noopener"><img src="assets/instituciones/sfe.png" alt="" loading="lazy"><span>Servicio Fitosanitario del Estado</span></a>
-        <a class="enlace" href="https://www.ministeriodesalud.go.cr" target="_blank" rel="noopener"><img src="assets/instituciones/ministerio-salud.png" alt="" loading="lazy"><span>Ministerio de Salud</span></a>
-        <a class="enlace" href="https://www.crecex.com" target="_blank" rel="noopener"><img src="assets/instituciones/crecex.png" alt="" loading="lazy"><span>CRECEX</span></a>
-        <a class="enlace" href="https://www.procomer.com" target="_blank" rel="noopener"><img src="assets/instituciones/procomer.png" alt="" loading="lazy"><span>PROCOMER</span></a>
-        <a class="enlace" href="https://www.minae.go.cr" target="_blank" rel="noopener"><img src="assets/instituciones/minae.png" alt="" loading="lazy"><span>Control Ambiental · MINAE</span></a>
-        <a class="enlace" href="https://www.icd.go.cr" target="_blank" rel="noopener"><img src="assets/instituciones/icd.png" alt="" loading="lazy"><span>Instituto Costarricense sobre Drogas</span></a>
-        <a class="enlace" href="https://www.japdeva.go.cr" target="_blank" rel="noopener"><img src="assets/instituciones/japdeva.png" alt="" loading="lazy"><span>JAPDEVA</span></a>
-        <a class="enlace" href="https://www.spcaldera.com" target="_blank" rel="noopener"><img src="assets/instituciones/puerto-caldera.png" alt="" loading="lazy"><span>Sociedad Portuaria Caldera</span></a>
-      </div>
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="sec-head__l"><span class="eyebrow">Alianzas</span><h2 class="h2" data-split>Red de navieras y operadores <em>logísticos</em></h2></div><p class="lead">Negociamos y reservamos directamente con las líneas marítimas para que su flete llegue a Caldera, Moín o el Aeropuerto Juan Santamaría.</p></div>
+  </div>
+  <div class="marquee marquee--mar reveal" role="region" aria-label="Navieras y operadores aliados">
+    <div class="marquee__row" style="--dur:52s"><ul class="marquee__group">
+      <li class="box box--mar"><img src="assets/aliados/maersk.png" alt="Maersk" loading="lazy"></li>
+      <li class="box box--mar"><img src="assets/aliados/evergreen.png" alt="Evergreen" loading="lazy"></li>
+      <li class="box box--mar"><img src="assets/aliados/cma-cgm.png" alt="CMA CGM" loading="lazy"></li>
+      <li class="box box--mar"><img src="assets/aliados/nyk.png" alt="NYK" loading="lazy"></li>
+      <li class="box box--mar"><img src="assets/aliados/apl.png" alt="APL" loading="lazy"></li>
+      <li class="box box--mar"><img src="assets/aliados/csav.png" alt="CSAV" loading="lazy"></li>
+      <li class="box box--mar"><img src="assets/aliados/hutchison.png" alt="Hutchison Logistics" loading="lazy"></li>
+      <li class="box box--mar"><img src="assets/aliados/tcc.png" alt="TCC Shipping Worldwide" loading="lazy"></li>
+      <li class="box box--mar"><img src="assets/aliados/cargo-compass.png" alt="Cargo Compass" loading="lazy"></li>
+      <li class="box box--mar"><img src="assets/aliados/king-ocean.png" alt="King Ocean" loading="lazy"></li>
+    </ul></div>
+    <div class="estela" aria-hidden="true"></div><div class="estela estela--2" aria-hidden="true"></div>
+  </div>
+  <div class="wrap enlaces-wrap" id="enlaces">
+    <div class="sec-head reveal"><div class="sec-head__l"><span class="eyebrow">Enlaces para importadores</span><h2 class="h2" data-split>Instituciones con las que <em>tramitamos</em></h2></div><p class="lead">Accesos directos a los sitios oficiales para sus consultas y trámites.</p></div>
+    <div class="enlaces reveal">
+      <a class="enlace" href="https://www.hacienda.go.cr" target="_blank" rel="noopener"><img src="assets/instituciones/tica.png" alt="" loading="lazy"><span>Consultas TICA</span></a>
+      <a class="enlace" href="https://www.sfe.go.cr" target="_blank" rel="noopener"><img src="assets/instituciones/sfe.png" alt="" loading="lazy"><span>Servicio Fitosanitario del Estado</span></a>
+      <a class="enlace" href="https://www.ministeriodesalud.go.cr" target="_blank" rel="noopener"><img src="assets/instituciones/ministerio-salud.png" alt="" loading="lazy"><span>Ministerio de Salud</span></a>
+      <a class="enlace" href="https://www.crecex.com" target="_blank" rel="noopener"><img src="assets/instituciones/crecex.png" alt="" loading="lazy"><span>CRECEX</span></a>
+      <a class="enlace" href="https://www.procomer.com" target="_blank" rel="noopener"><img src="assets/instituciones/procomer.png" alt="" loading="lazy"><span>PROCOMER</span></a>
+      <a class="enlace" href="https://www.minae.go.cr" target="_blank" rel="noopener"><img src="assets/instituciones/minae.png" alt="" loading="lazy"><span>Control Ambiental · MINAE</span></a>
+      <a class="enlace" href="https://www.icd.go.cr" target="_blank" rel="noopener"><img src="assets/instituciones/icd.png" alt="" loading="lazy"><span>Instituto Costarricense sobre Drogas</span></a>
+      <a class="enlace" href="https://www.japdeva.go.cr" target="_blank" rel="noopener"><img src="assets/instituciones/japdeva.png" alt="" loading="lazy"><span>JAPDEVA</span></a>
+      <a class="enlace" href="https://www.spcaldera.com" target="_blank" rel="noopener"><img src="assets/instituciones/puerto-caldera.png" alt="" loading="lazy"><span>Sociedad Portuaria Caldera</span></a>
     </div>
   </div>
 </section>
@@ -774,6 +791,22 @@ textarea.field{min-height:110px;resize:vertical;line-height:1.5}
   // Animaciones SMIL de las ilustraciones: quietas con movimiento reducido
   function syncSmil(){ document.querySelectorAll('.srv__art').forEach(function(svg){ if (svg.pauseAnimations){ reduce.matches ? svg.pauseAnimations() : svg.unpauseAnimations(); } }); }
   syncSmil(); reduce.addEventListener('change', syncSmil);
+
+  /* ---------- Bandas: duplicar contenido para el bucle y precargar al acercarse ---------- */
+  document.querySelectorAll('.marquee__row').forEach(function(row){
+    var g = row.querySelector('.marquee__group');
+    Array.prototype.slice.call(g.children).forEach(function(li){
+      var c = li.cloneNode(true); c.classList.add('dup'); c.setAttribute('aria-hidden', 'true'); c.querySelector('img').alt = ''; g.appendChild(c);
+    });
+    var g2 = g.cloneNode(true); g2.setAttribute('aria-hidden', 'true');
+    g2.querySelectorAll('img').forEach(function(i){ i.alt = ''; }); row.appendChild(g2);
+  });
+  if ('IntersectionObserver' in window){
+    var pre = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting){ e.target.querySelectorAll('img[loading="lazy"]').forEach(function(i){ i.loading = 'eager'; }); pre.unobserve(e.target); } });
+    }, { rootMargin: '50% 0px' });
+    document.querySelectorAll('.marquee').forEach(function(m){ pre.observe(m); });
+  }
 
   /* ---------- Menú móvil ---------- */
   var header = document.querySelector('.header'), btn = document.querySelector('.menu-btn');
